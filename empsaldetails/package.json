@@ -1,0 +1,32 @@
+{
+ "name": "empsaldetails",
+ "version": "1.0.0",
+ "dependencies": {
+  "@sap/cds": "^9",
+  "@sap/xsenv": "^6.2.1",
+  "@sap/xssec": "^4.13.0"
+ },
+ "devDependencies": {
+  "@cap-js/sqlite": "^2.4",
+  "@sap/cds-dk": "^9",
+  "cds-plugin-ui5": "^0.13.0"
+ },
+ "scripts": {
+  "start": "cds-serve",
+  "watch-employee_salary": "cds watch --open demo.empsal.employeesalary/index.html?sap-ui-xx-viewCache=false --livereload false"
+ },
+ "cds": {
+  "requires": {
+   "[production]": {
+    "auth": "xsuaa"
+   }
+  }
+ },
+ "private": true,
+ "workspaces": [
+  "app/*"
+ ],
+ "sapux": [
+  "app/employee_salary"
+ ]
+}
