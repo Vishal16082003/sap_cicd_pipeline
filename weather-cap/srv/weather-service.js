@@ -7,7 +7,7 @@ module.exports = cds.service.impl(function () {
 
         const city = req.data.city;
 
-        const API_KEY =  "55b6d9c58b6566823da702ac620a0b24"; // Replace with your OpenWeatherMap API key
+        const API_KEY =  ""; // Replace with your OpenWeatherMap API key
        // 'YOUR_API_KEY_HERE';
 
         try {
