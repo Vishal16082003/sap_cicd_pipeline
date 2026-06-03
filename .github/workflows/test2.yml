@@ -3,7 +3,6 @@ ID: empsaldetails
 version: 1.0.0
 
 modules:
-
   - name: employee-sal-srv
     type: nodejs
     path: gen/srv
@@ -23,18 +22,19 @@ modules:
     path: gen/db
     requires:
       - name: employee-sal-db
+
   - name: empsaldetails
     type: approuter.nodejs
     path: app/router
     parameters:
       keep-existing-routes: true
-      disk-quota: 256M
       memory: 256M
+      disk-quota: 256M
     requires:
       - name: srv-api
         group: destinations
         properties:
-          name: srv-api # must be used in xs-app.json as well
+          name: srv-api
           url: ~{srv-url}
           forwardAuthToken: true
       - name: empsaldetails-auth
@@ -45,12 +45,12 @@ modules:
           app-uri: ${default-uri}
 
 resources:
-
   - name: employee-sal-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
+
   - name: empsaldetails-auth
     type: org.cloudfoundry.managed-service
     parameters:
@@ -62,15 +62,18 @@ resources:
         tenant-mode: dedicated
         oauth2-configuration:
           credential-types:
-            - "binding-secret"
-            - "x509"
+            - binding-secret
+            - x509
           redirect-uris:
             - https://*~{app-api/app-uri}/**
     requires:
       - name: app-api
+
 description: "A simple CAP project."
+
 parameters:
   enable-parallel-deployments: true
+
 build-parameters:
   before-all:
     - builder: custom
